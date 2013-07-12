@@ -6,10 +6,12 @@
 
 1. Clone: `git clone git@github.com:BackForty/blossom.git`
 2. Copy
+
 	```bash
 	cd RAILS_ROOT
 	cp -r ~/blossom/src/* app/assets/stylesheets/
 	```
+
 3. Profit
 
 ### Making changes
