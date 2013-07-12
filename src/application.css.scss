@@ -1,0 +1,75 @@
+@import "lib/global";
+
+header {
+  nav {
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        display: block;
+        float: left;
+
+        a {
+
+        }
+      }
+    }
+  }
+}
+
+article {
+  section {
+
+  }
+
+  aside {
+
+  }
+}
+
+footer {
+
+}
+
+.container {
+  @include clearfix;
+  margin-left: auto;
+  margin-right: auto;
+  width: 960px; // Standard 960px grid
+  @include tablet { width: 768px; }
+  @include landscape { width: 480px; }
+  @include portrait { width: 320px; }
+}
+
+.row { @include clearfix; }
+
+// Build columns
+$grid-size: 12;
+$i: 1;
+@while $i <= $grid-size {
+  // .columnx and .spanx both have widths
+  .column#{$i}, .span#{$i} {
+    width: percentage($i / $grid-size);
+    @include mobile { width: auto; }
+  }
+
+  // .columnx has a more specific layout
+  .column#{$i} {
+    float: left;
+    min-height: 1px;
+    padding-left: 1em;
+    padding-right: 1em;
+    @include mobile {
+      float: none;
+    }
+  }
+
+  // .offsetx pushes off from the left
+  .offset#{$i} {
+    margin-left: percentage($i / $grid-size);
+    @include mobile { margin-left: auto; }
+  }
+  $i: $i + 1;
+}

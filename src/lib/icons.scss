@@ -1,0 +1,23 @@
+@mixin icon($class, $unicode) {
+  .#{$class}.icon:before {
+    content: "\e#{$unicode}";
+  }
+}
+
+/* Basic icon element preparation */
+.icon {
+  &:before {
+    content: '';
+    display: inline-block;
+    font-family: $app;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+  }
+
+  &.large:before {
+    font-size: percentage(4/3);
+  }
+}
+
+// @include icon("sandwich-button", "001");

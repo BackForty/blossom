@@ -1,0 +1,26 @@
+@mixin font-face($family, $url) {
+  @font-face {
+    font-family: "#{$family}";
+    font-weight: normal !important;
+    font-style: normal;
+    src: url("#{$url}.eot");
+    src: url("#{$url}.eot?#iefix") format("embedded-opentype"),
+         url("#{$url}.woff") format("woff"),
+         url("#{$url}.ttf") format("truetype"),
+         url("#{$url}.svg") format("svg");
+  }
+
+  @media screen and (-webkit-min-device-pixel-ratio:0) {
+    @font-face {
+      font-family: "#{$family}";
+      src: url("#{$url}.svg") format("svg");
+    }
+  }
+
+  .#{$url} {
+    font-family: $family;
+    font-weight: normal !important;
+  }
+}
+
+// @include font-face($app, $app-slug);

@@ -1,0 +1,166 @@
+// CROSS-BROWSER MIXINS
+@mixin x($property, $value...) {
+  #{$property}: $value;
+  -khtml-#{$property}: $value;
+  -moz-#{$property}: $value;
+  -ms-#{$property}: $value;
+  -o-#{$property}: $value;
+  -webkit-#{$property}: $value;
+}
+
+@mixin animate($name, $duration, $iteration-count, $timing-function) {
+  @include animation-name($name);
+  @include animation-duration($duration);
+  @include animation-iteration-count($iteration-count);
+  @include animation-timing-function($timing-function);
+}
+
+@mixin animation-name($name) {
+  @include x(animation-name, $name);
+}
+
+@mixin animation-duration($duration) {
+  @include x(animation-duration, $duration);
+}
+
+@mixin animation-iteration-count($iteration-count) {
+  @include x(animation-iteration-count, $iteration-count);
+}
+
+@mixin animation-timing-function($timing-function) {
+  @include x(animation-timing-function, $timing-function);
+}
+
+@mixin appearance($appearance) {
+  @include x(appearance, $appearance);
+}
+
+@mixin background-size($background-size...) {
+  @include x(background-size, $background-size...);
+}
+
+@mixin border-radius($radius) {
+  @include x(border-radius, $radius);
+}
+
+@mixin box-shadow($shadow) {
+  @include x(box-shadow, $shadow);
+}
+
+@mixin box-shadow($shadows...) {
+  @include x("box-shadow", $shadows);
+}
+
+@mixin box-sizing($box-sizing) {
+  @include x(box-sizing, $box-sizing);
+}
+
+@mixin clearfix {
+  *zoom:1;
+
+  &:after, &:before {
+    content:'';
+    display:table;
+    // Fixes Opera/contenteditable bug:
+    // http://nicolasgallagher.com/micro-clearfix-hack/#comment-36952
+    line-height: 0;
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+@mixin gradient($start, $end: false, $image: none, $top: 0%, $bottom: 100%) {
+  @if $end {} @else { $end: darken($start, 20%); }
+  background:$image, linear-gradient(top, $start $top, $end $bottom) repeat;
+  background:$image, -moz-linear-gradient(top, $start $top, $end $bottom) repeat;
+  background:$image, -ms-linear-gradient(top, $start $top, $end $bottom) repeat;
+  background:$image, -o-linear-gradient(top, $start $top, $end $bottom) repeat;
+  background:-webkit-gradient(linear, left top, left bottom, color-stop($top, $start), color-stop($bottom, $end)) repeat, $image;
+  background:-webkit-linear-gradient(top, $start $top, $end $bottom) repeat, $image;
+  $start: ie-hex-str($start);
+  $end: ie-hex-str($end);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$start}, endColorstr=#{$end});
+}
+
+@mixin opacity($opacity: 0) {
+  $ms-opacity: $opacity * 100;
+  filter:alpha(opacity = $ms-opacity);
+  @include x(opacity, $opacity);
+  -ms-filter:none;
+}
+
+@mixin perspective($perspective) {
+  @include x(perspective, $perspective);
+}
+
+@mixin radial($innerColor: #555, $outerColor: #333, $image: none)  {
+  background:$outerColor;
+  background:-moz-radial-gradient(circle, $innerColor, $outerColor) no-repeat, $image;
+  background:-o-radial-gradient(circle, $innerColor, $outerColor) no-repeat, $image;
+  background:-webkit-gradient(radial, center center, 0, center center, 100%, from($innerColor), to($outerColor)) no-repeat, $image;
+  background:-webkit-radial-gradient(circle, $innerColor, $outerColor) no-repeat, $image;
+  $outerColor: ie-hex-str($outerColor);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$outerColor}, endColorstr=#{$outerColor});
+}
+
+@mixin rotate($deg) {
+  @include transform(rotate($deg));
+}
+
+@mixin transform($transform) {
+  @include x(transform, $transform);
+}
+
+@mixin transform-origin($transform-origin) {
+  @include x(transform-origin, $transform-origin);
+}
+
+@mixin transform-style($transform-style) {
+  @include x(transform-style, $transform-style);
+}
+
+@mixin transition($transition...) {
+  @include x(transition, $transition);
+}
+
+@mixin transition-x($property, $transition...) {
+  transition: $property $transition;
+  -khtml-transition: -khtml-#{$property} $transition;
+  -moz-transition: -moz-#{$property} $transition;
+  -ms-transition: -ms-#{$property} $transition;
+  -o-transition: -o-#{$property} $transition;
+  -webkit-transition: -webkit-#{$property} $transition;
+}
+
+// GRID MIXINS
+@mixin desktop {
+  @media only screen and (min-width:768px) {
+    @content
+  }
+}
+
+@mixin tablet {
+  @media only screen and (min-width:768px) and (max-width: 959px) {
+    @content
+  }
+}
+
+@mixin mobile {
+  @media only screen and (max-width: 767px) {
+    @content
+  }
+}
+
+@mixin landscape {
+  @media only screen and (min-width:480px) and (max-width: 767px) {
+    @content
+  }
+}
+
+@mixin portrait {
+  @media only screen and (max-width: 479px) {
+    @content
+  }
+}

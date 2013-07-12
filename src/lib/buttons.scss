@@ -1,0 +1,53 @@
+$button-height: 2.4em;
+
+.button {
+  @include appearance(none);
+  @include border-radius(3px);
+  background-color: $highlight;
+  color: $light;
+  cursor: pointer;
+  display: -moz-inline-stack;
+  display: inline-block;
+  font: bold 80% $sans;
+  height: $button-height;
+  line-height: ($button-height - 0.1em) !important;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:disabled, &.disabled {
+    opacity:0.5 !important;
+  }
+
+  &:hover {
+    background-color: lighten($highlight, 5%);
+  }
+
+  &:active {
+    @include box-shadow(inset rgba($dark, 0.3) 0 1px 2px);
+    background-color: darken($highlight, 5%);
+  }
+
+  &.big {
+    font-size: 120%;
+  }
+
+  &.big, &.block {
+    display:block;
+    text-align:center;
+  }
+
+  &.small {
+    font-size: 80%;
+  }
+
+  &::-moz-focus-inner {
+    border: none;
+    padding: 0 !important;
+    vertical-align: middle;
+  }
+}
+
+@-moz-document url-prefix() {
+  .button { vertical-align: middle; }
+}

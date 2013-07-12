@@ -1,0 +1,21 @@
+// FUN
+$app: "Application Name";
+$app-slug: "application-name";
+
+// COLORS
+$dark: black;
+$light: white;
+
+$red: red;
+$green: green;
+$blue: blue;
+
+$highlight: $blue;
+
+// FONTS
+$sans: 'open sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$serif: Georgia, Times, serif;
+$heading: $serif;
+
+// MIXINS
+@import "mixins.scss";

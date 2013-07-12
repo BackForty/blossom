@@ -1,0 +1,85 @@
+@import "lib/constants";
+@import "lib/buttons";
+@import "lib/fonts";
+@import "lib/icons";
+
+// GLOBAL STYLES
+*, *:before, *:after {
+  @include box-sizing(border-box);
+}
+
+a {
+  color: $highlight;
+  text-decoration: none;
+
+  &:hover { text-decoration: underline; }
+}
+
+html, body {
+  min-height: 100%;
+}
+
+body {
+  font: normal 10pt $sans;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5 {
+  color: $highlight;
+  font-family: $heading;
+  font-weight: normal;
+  margin: 0 0 0.5em 0;
+}
+
+h1 {
+  font-size: 360%;
+}
+
+h2 {
+  font-size: 300%;
+}
+
+h3 {
+  font-size: 200%;
+}
+
+h4 {
+  font-size: 150%;
+}
+
+h5 {
+  font-size: 100%;
+}
+
+// UTILITY CLASSES
+// General styling
+.block {
+  display: block !important;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
+
+// Media specific
+.desktop-only {
+  @include mobile { display: none; }
+}
+
+.mobile-only {
+  @include desktop { display: none; }
+}
+
+.tablet-only {
+  display: none;
+  @include tablet { display: block; }
+}
