@@ -20,7 +20,7 @@ gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 
 group :development do
-  gem 'mailcatcher'
+  gem 'mailcatcher', require: false
 end
 
 group :development, :test do
@@ -59,10 +59,11 @@ public/assets
 Procfile
 tmp
 Gitignore
-file ".ruby-version", "2.0.0"
-file ".ruby-gemset", app_name
+
+file ".ruby-version", "2.0.0p247"
 
 run "rm -rf test/"
+run "bundle install"
 generate "cucumber:install --capybara --rspec"
 generate "rspec:install"
 
@@ -70,6 +71,4 @@ file "features/support/capybara.rb", "require 'capybara/poltergeist'
 Capybara.javascript_driver = :poltergeist"
 
 git :init
-git add: "README.md"
-
-puts (methods.sort - Object.methods).inspect
+git add: "README.md features/ rspec/"
