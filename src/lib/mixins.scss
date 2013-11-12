@@ -43,10 +43,6 @@
   @include x(border-radius, $radius);
 }
 
-@mixin box-shadow($shadow) {
-  @include x(box-shadow, $shadow);
-}
-
 @mixin box-shadow($shadows...) {
   @include x("box-shadow", $shadows);
 }
@@ -59,10 +55,8 @@
   *zoom:1;
 
   &:after, &:before {
-    content:'';
-    display:table;
-    // Fixes Opera/contenteditable bug:
-    // http://nicolasgallagher.com/micro-clearfix-hack/#comment-36952
+    content: '';
+    display: table;
     line-height: 0;
   }
 
@@ -72,7 +66,9 @@
 }
 
 @mixin gradient($start, $end: false, $image: none, $top: 0%, $bottom: 100%) {
-  @if $end {} @else { $end: darken($start, 20%); }
+  @if $end == false {
+    $end: darken($start, 20%);
+  }
   background:$image, linear-gradient(top, $start $top, $end $bottom) repeat;
   background:$image, -moz-linear-gradient(top, $start $top, $end $bottom) repeat;
   background:$image, -ms-linear-gradient(top, $start $top, $end $bottom) repeat;
@@ -81,14 +77,14 @@
   background:-webkit-linear-gradient(top, $start $top, $end $bottom) repeat, $image;
   $start: ie-hex-str($start);
   $end: ie-hex-str($end);
-  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$start}, endColorstr=#{$end});
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$start}, endColorstr=#{$end});
 }
 
 @mixin opacity($opacity: 0) {
   $ms-opacity: $opacity * 100;
-  filter:alpha(opacity = $ms-opacity);
+  filter: alpha(opacity = $ms-opacity);
   @include x(opacity, $opacity);
-  -ms-filter:none;
+  -ms-filter: none;
 }
 
 @mixin perspective($perspective) {

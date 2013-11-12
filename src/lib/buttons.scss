@@ -10,13 +10,14 @@ $button-height: 2.4em;
   display: inline-block;
   font: bold 80% $sans;
   height: $button-height;
+  letter-spacing: 1px;
   line-height: ($button-height - 0.1em) !important;
   text-align: center;
   text-decoration: none;
   white-space: nowrap;
 
   &:disabled, &.disabled {
-    opacity:0.5 !important;
+    @include opacity(0.5 !important);
   }
 
   &:hover {
@@ -29,12 +30,8 @@ $button-height: 2.4em;
   }
 
   &.big {
+    display: block;
     font-size: 120%;
-  }
-
-  &.big, &.block {
-    display:block;
-    text-align:center;
   }
 
   &.small {
@@ -49,5 +46,7 @@ $button-height: 2.4em;
 }
 
 @-moz-document url-prefix() {
-  .button { vertical-align: middle; }
+  .button {
+    vertical-align: middle;
+  }
 }

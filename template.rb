@@ -60,7 +60,7 @@ Procfile
 tmp
 Gitignore
 
-file ".ruby-version", "2.0.0p247"
+file ".ruby-version", "2.0.0-p247"
 
 run "rm -rf test/"
 run "bundle install"
@@ -71,4 +71,4 @@ file "features/support/capybara.rb", "require 'capybara/poltergeist'
 Capybara.javascript_driver = :poltergeist"
 
 git :init
-git add: "README.md features/ rspec/"
+git add: "README.md features/ spec/"

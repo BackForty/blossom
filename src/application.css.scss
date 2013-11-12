@@ -39,8 +39,7 @@ footer {
   margin-right: auto;
   width: 960px; // Standard 960px grid
   @include tablet { width: 768px; }
-  @include landscape { width: 480px; }
-  @include portrait { width: 320px; }
+  @include mobile { width: 100%; }
 }
 
 .row { @include clearfix; }

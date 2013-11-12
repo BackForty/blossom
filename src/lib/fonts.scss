@@ -3,17 +3,17 @@
     font-family: "#{$family}";
     font-weight: normal !important;
     font-style: normal;
-    src: url("#{$url}.eot");
-    src: url("#{$url}.eot?#iefix") format("embedded-opentype"),
-         url("#{$url}.woff") format("woff"),
-         url("#{$url}.ttf") format("truetype"),
-         url("#{$url}.svg") format("svg");
+    src: font-url("#{$url}.eot");
+    src: font-url("#{$url}.eot?#iefix") format("embedded-opentype"),
+         font-url("#{$url}.woff") format("woff"),
+         font-url("#{$url}.ttf") format("truetype"),
+         font-url("#{$url}.svg") format("svg");
   }
 
   @media screen and (-webkit-min-device-pixel-ratio:0) {
     @font-face {
       font-family: "#{$family}";
-      src: url("#{$url}.svg") format("svg");
+      src: font-url("#{$url}.svg") format("svg");
     }
   }
 
