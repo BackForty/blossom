@@ -2,8 +2,8 @@ $button-height: 2.4em;
 
 .button {
   @include appearance(none);
-  @include border-radius(3px);
   background-color: $highlight;
+  border-radius: 3px;
   color: $light;
   cursor: pointer;
   display: -moz-inline-stack;
@@ -17,7 +17,7 @@ $button-height: 2.4em;
   white-space: nowrap;
 
   &:disabled, &.disabled {
-    @include opacity(0.5 !important);
+    @include opacity(0.5);
   }
 
   &:hover {
