@@ -12,28 +12,30 @@ file "Gemfile", <<-Gemfile
 source 'https://rubygems.org'
 ruby '2.0.0'
 
-#{rails_gemfile_entry}
-gem 'bcrypt-ruby', '~> 3.0.0'
+#{rails_gemfile_entry.map {|gem| "gem '#{gem.name}', '#{gem.version}'#{"\n# #{gem.comment}" if gem.comment}" }.join("\n") }
+
+gem 'bcrypt'
 gem 'haml-rails'
 gem 'pg'
-gem 'sass-rails', '~> 4.0.0'
-gem 'uglifier', '>= 1.3.0'
+gem 'sass-rails'
+gem 'uglifier'
 
 group :development do
   gem 'mailcatcher', require: false
 end
 
 group :development, :test do
+  gem 'fabrication'
+  gem 'faker'
   gem 'launchy'
   gem 'pry-rails'
   gem 'rspec-rails'
 end
 
 group :test do
-  gem 'cucumber-rails', require: false
+  gem 'capybara'
   gem 'database_cleaner'
-  gem 'fabrication'
-  gem 'faker'
+  gem 'guard-spring'
   gem 'poltergeist', require: false
 end
 Gemfile
@@ -64,11 +66,10 @@ file ".ruby-version", "2.0.0-p247"
 
 run "rm -rf test/"
 run "bundle install"
-generate "cucumber:install --capybara --rspec"
 generate "rspec:install"
 
-file "features/support/capybara.rb", "require 'capybara/poltergeist'
+file "spec/support/capybara.rb", "require 'capybara/poltergeist'
 Capybara.javascript_driver = :poltergeist"
 
 git :init
-git add: "README.md features/ spec/"
+git add: "README.md spec/"
