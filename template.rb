@@ -15,8 +15,11 @@ ruby '2.0.0'
 #{rails_gemfile_entry.map {|gem| "gem '#{gem.name}', '#{gem.version}'#{"\n# #{gem.comment}" if gem.comment}" }.join("\n") }
 
 gem 'bcrypt'
-gem 'haml-rails'
+gem 'slim-rails'
 gem 'pg'
+
+# Assets
+gem 'bourbon'
 gem 'sass-rails'
 gem 'uglifier'
 
@@ -72,4 +75,4 @@ file "spec/support/capybara.rb", "require 'capybara/poltergeist'
 Capybara.javascript_driver = :poltergeist"
 
 git :init
-git add: "README.md spec/"
+git add: "."

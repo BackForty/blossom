@@ -48,14 +48,14 @@ footer {
 $grid-size: 12;
 $i: 1;
 @while $i <= $grid-size {
-  // .columnx and .spanx both have widths
-  .column#{$i}, .span#{$i} {
+  // .column-x and .span-x both have widths
+  .column-#{$i}, .span-#{$i} {
     width: percentage($i / $grid-size);
     @include mobile { width: auto; }
   }
 
-  // .columnx has a more specific layout
-  .column#{$i} {
+  // .column-x has a more specific layout
+  .column-#{$i} {
     float: left;
     min-height: 1px;
     padding-left: 1em;
@@ -65,8 +65,8 @@ $i: 1;
     }
   }
 
-  // .offsetx pushes off from the left
-  .offset#{$i} {
+  // .offset-x pushes off from the left
+  .offset-#{$i} {
     margin-left: percentage($i / $grid-size);
     @include mobile { margin-left: auto; }
   }
