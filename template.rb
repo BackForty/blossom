@@ -65,10 +65,15 @@ Procfile
 tmp
 Gitignore
 
+file "Procfile.local", <<-Procfile
+web: spring rails s
+Procfile
+
 file ".ruby-version", "2.0.0-p247"
 
 run "rm -rf test/"
 run "bundle install"
+run "bundle exec guard init spring"
 generate "rspec:install"
 
 file "spec/support/capybara.rb", "require 'capybara/poltergeist'
