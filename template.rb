@@ -20,6 +20,7 @@ gem 'pg'
 
 # Assets
 gem 'bourbon'
+gem 'jquery-rails'
 gem 'sass-rails'
 gem 'uglifier'
 
