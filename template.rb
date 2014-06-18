@@ -37,7 +37,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'capybara'
+  gem 'capybara', require: false
   gem 'database_cleaner'
   gem 'guard-spring'
   gem 'poltergeist', require: false
@@ -52,7 +52,25 @@ run "mkdir app/assets/fonts"
 run "touch app/assets/fonts/.gitkeep"
 run "cp -r #{File.dirname(__FILE__)}/src app/assets/stylesheets"
 
-run "mv config/database.yml config/database.yml.sample"
+run "rm config/database.yml"
+file "config/database.yml.sample", <<-DB
+default: &default
+  adapter: postgresql
+  host: localhost
+  min_messages: warning
+
+development:
+  <<: *default
+  database: #{app}_development
+
+test:
+  <<: *default
+  database: #{app}_test
+
+production:
+  <<: *default
+  database: #{app}_production
+DB
 
 run "rm .gitignore"
 file ".gitignore", <<-Gitignore
@@ -77,7 +95,8 @@ run "bundle install"
 run "bundle exec guard init spring"
 generate "rspec:install"
 
-file "spec/support/capybara.rb", "require 'capybara/poltergeist'
+file "spec/support/capybara.rb", "require 'capybara'
+require 'capybara/poltergeist'
 Capybara.javascript_driver = :poltergeist"
 
 git :init
