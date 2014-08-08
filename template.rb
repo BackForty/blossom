@@ -40,7 +40,7 @@ group :test do
   gem 'capybara', require: false
   gem 'database_cleaner'
   gem 'guard-spring'
-  gem 'poltergeist', require: false
+  gem 'poltergeist', require: 'capybara/poltergeist'
 end
 Gemfile
 
@@ -61,15 +61,15 @@ default: &default
 
 development:
   <<: *default
-  database: #{app}_development
+  database: #{app_name}_development
 
 test:
   <<: *default
-  database: #{app}_test
+  database: #{app_name}_test
 
 production:
   <<: *default
-  database: #{app}_production
+  database: #{app_name}_production
 DB
 
 run "rm .gitignore"
@@ -92,6 +92,7 @@ file ".ruby-version", "2.0.0-p247"
 
 run "rm -rf test/"
 run "bundle install"
+
 run "bundle exec guard init spring"
 generate "rspec:install"
 
